@@ -1,0 +1,41 @@
+<resources>
+<!--    RegLayout labels and inputs-->
+    <string name="app_name">ProMed</string>
+    <string name="surnameLabel">Ваша фамилия</string>
+    <string name="surnameLabelHint">Введите вашу фамилию...</string>
+    <string name="nameLabel">Ваше имя</string>
+    <string name="nameLabelHint">Введите ваше имя...</string>
+    <string name="thirdNameLabel">Ваше отчество</string>
+    <string name="thirdNameLabelHint">Введите ваше отчество...</string>
+    <string name="phoneNumbe">Ваш номер телефона</string>
+    <string name="phoneNumberHint">Введите ваш номер телефона...</string>
+    <string name="emailLabel">Ваша почта</string>
+    <string name="emailLabelHint">Введите вашу почту...</string>
+    <string name="passwordLabel">Придумайте ваш пароль</string>
+    <string name="passwordLabelHint">Введите ваш пароль...</string>
+    <string name="password2Label">Повторите ваш пароль</string>
+    <string name="password2LabelHint">Повторите ваш пароль...</string>
+<!--    RegLayout Input Errors-->
+    <string name="inputEmpty">Вы не заполнили все поля</string>
+    <string name="inputHaveUnderTwoSim">Одно из введенных значений не корректно</string>
+    <string name="passwordsAreNotTheSame">Введенные пароли - не совпадают</string>
+<!--    RegLayout Buttons-->
+    <string name="submitBtn">Подтвердить</string>
+    <string name="cancelBtn">Отмена</string>
+
+    
+<!--    MainLayout-->
+<!--    MainLayut Buttons-->
+    <string name="signIn">Войти</string>
+    <string name="signUp">Зарегистрироваться</string>
+
+
+    <!--    SignIn Layout-->
+    <!--    SignIn layout labels-->
+    <string name="sigIn_login">Введите логин</string>
+    <string name="signIn_password">Введите пароль</string>
+    <!--    SignIn layout buttons-->
+    <string name="enter">Вход</string>
+    <string name="cancel">Отмена</string>
+    
+</resources>
