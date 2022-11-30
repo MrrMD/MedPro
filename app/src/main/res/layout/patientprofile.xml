@@ -6,9 +6,13 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center|top"
         android:text="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,44 +22,36 @@
 
     <LinearLayout
         android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_height="684dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51">
-
-        <EditText
-            android:id="@+id/signInLogin"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="@string/sigIn_login"
-            android:inputType="textPersonName"
-            android:onClick="onClickSignInBtn" />
-
-        <EditText
-            android:id="@+id/signInPassword"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="@string/signIn_password"
-            android:inputType="textPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
 
         <Button
-            android:id="@+id/signInOk"
+            android:id="@+id/button"
             android:layout_width="260dp"
             android:layout_height="50dp"
-            android:onClick="onClickUserAuth"
-            android:layout_marginTop="35dp"
-            android:text="@string/enter" />
+            android:text="@string/makeAppointment" />
 
         <Button
-            android:id="@+id/signInCancel"
+            android:id="@+id/button2"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:text="@string/myAppointments" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:text="@string/mySettings" />
+
+        <Button
+            android:id="@+id/button4"
             android:layout_width="260dp"
             android:layout_height="50dp"
             android:onClick="onClickBackToMain"

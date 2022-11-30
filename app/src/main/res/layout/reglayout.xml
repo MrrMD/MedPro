@@ -215,10 +215,10 @@
 
             <Button
                 android:id="@+id/button11"
-                android:layout_width="240dp"
+                android:layout_width="260dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="84dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginEnd="76dp"
+                android:layout_marginBottom="36dp"
                 android:onClick="onClickBackToMain"
                 android:text="Отмена"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -226,9 +226,9 @@
 
             <Button
                 android:id="@+id/button14"
-                android:layout_width="240dp"
+                android:layout_width="260dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="84dp"
+                android:layout_marginEnd="76dp"
                 android:layout_marginBottom="4dp"
                 android:onClick="onClickConfirmReg"
                 android:text="@string/submitBtn"
@@ -237,10 +237,10 @@
 
             <TextView
                 android:id="@+id/errorLabel"
-                android:layout_width="240dp"
+                android:layout_width="260dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="483dp"
-                android:layout_marginEnd="84dp"
+                android:layout_marginEnd="76dp"
                 android:layout_marginBottom="48dp"
                 android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/button14"

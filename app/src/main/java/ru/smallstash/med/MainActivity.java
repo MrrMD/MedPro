@@ -105,7 +105,9 @@ public class MainActivity extends AppCompatActivity{
     public void onClickUserAuth(View view){
         login = findViewById(R.id.signInLogin);
         pass = findViewById(R.id.signInPassword);
-        userController.userSignInValidation(login.getText().toString(), pass.getText().toString());
+        if(userController.userSignInValidation(login.getText().toString(), pass.getText().toString())){
+            setContentView(R.layout.patientprofile);
+        }
     }
 
 }
