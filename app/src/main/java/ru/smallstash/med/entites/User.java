@@ -8,7 +8,15 @@ public class User {
     private String phoneNumber;
     private String email;
     private String password;
+    private Boolean isAdmin;
 
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isAdmin(){
+        return isAdmin;
+    }
 
     public User(String name, String surname, String thirdName, String phoneNumber, String email, String password) {
         this.name = name;
@@ -17,6 +25,13 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+        this.isAdmin = false;
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+        this.isAdmin = true;
     }
 
     public String getName() {

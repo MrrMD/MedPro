@@ -1,6 +1,6 @@
 package ru.smallstash.med.entites;
 
-public enum Post {
+public enum Posts {
     ВРАЧ_АЛЛЕРГОЛОГ,
     ВРАЧ_АНЕСТЕЗИОЛОГ_РЕАНИМАТОЛОГ,
     ВРАЧ_ЭПИДЕМИОЛОГ,

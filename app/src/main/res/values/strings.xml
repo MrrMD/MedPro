@@ -44,4 +44,10 @@
     <string name="makeAppointment">Записаться на прием</string>
     <string name="mySettings">Настройки</string>
 
+<!--    AdminPanel Labels-->
+    <string name="hospitalLabel">Выберите учереждение</string>
+    <string name="postLabel">Выберите направление</string>
+    <string name="DayLabel">Укажите дни</string>
+    <string name="TimeLabel">Укажите время</string>
+
 </resources>
