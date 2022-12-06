@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -34,10 +35,11 @@ public class MainActivity extends AppCompatActivity{
 
     private EditText login;
     private EditText pass;
-    private Spinner spinner;
-    private Spinner spinner2;
+    private Spinner adminPanelHospitalSpinner;
+    private Spinner adminPanelPostlSpinner;
     private ArrayAdapter<CharSequence> adapter;
     private ArrayAdapter<CharSequence> adapter2;
+
 
     private Spinner hospitalSpinner;
     private String hospital;
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity{
     {
         System.out.println("Admin creating");
         userController.createNewUser("admin", "admin","Clinic Hospital №1");
+        userController.createNewUser("123","123","123","123","123","123");
+
     }
 
     @Override
@@ -76,29 +80,10 @@ public class MainActivity extends AppCompatActivity{
     @SuppressLint("MissingInflatedId")
     public void onClickConfirmReg(View view) {
 
-        name = findViewById(R.id.name);
-        surname = findViewById(R.id.surname);
-        thirdname = findViewById(R.id.thirdname);
-        phoneNumber = findViewById(R.id.phonenumber);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        password2 = findViewById(R.id.password2);
-        errorView = findViewById(R.id.errorLabel);
-
-        //ПЕРЕДЕЛАТЬ
-        if(!inputValidation(name)){return;};
-        if(!inputValidation(surname)){return;};
-        if(!inputValidation(thirdname)){return;};
-        if(!inputValidation(phoneNumber)){return;};
-        if(!inputValidation(email)){return;};
-        if(!inputValidation(password)){return;};
-        if(!inputValidation(password2)){return;};
-
-        if (!password.getText().toString().equals(password2.getText().toString())
-                && !password.getText().toString().equals("")) {
-            errorView.setText(getResources().getString(R.string.passwordsAreNotTheSame));
+        if(!inputsInit()){
             return;
-        }
+        };
+
         userController.createNewUser(name.getText().toString(),
                 surname.getText().toString(),
                 thirdname.getText().toString(),
@@ -125,6 +110,17 @@ public class MainActivity extends AppCompatActivity{
             errorView.setText(getString(R.string.inputHaveUnderTwoSim));
             return false;
         }
+
+        if (!password.getText().toString().equals(password2.getText().toString())
+                && !password.getText().toString().equals("")) {
+            errorView.setText(getResources().getString(R.string.passwordsAreNotTheSame));
+            return false;
+        }
+        if(userController.userEmailExistCheck(email.getText().toString())){
+            errorView.setText("Пользователь с данной почтой уже существует");
+            return false;
+        }
+
         return true;
     }
 
@@ -134,24 +130,34 @@ public class MainActivity extends AppCompatActivity{
         pass = findViewById(R.id.signInPassword);
         if(userController.userSignInValidation(login.getText().toString(), pass.getText().toString())){
             if(userController.isAdmin(login.getText().toString())){
-                setContentView(R.layout.adminpanel);
-                spinner = (Spinner) findViewById(R.id.adminPanelHospitalSpinner);
-                adapter = ArrayAdapter.createFromResource(this,
-                        R.array.hospitales, android.R.layout.simple_spinner_item);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                spinner2 = (Spinner) findViewById(R.id.adminPanelPostlSpinner);
-                adapter2 = ArrayAdapter.createFromResource(this,
-                        R.array.posts, android.R.layout.simple_spinner_item);
-                adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-                spinner.setAdapter(adapter);
-                spinner2.setAdapter(adapter2);
+                setContentView(R.layout.reg_employee_layout_1);
                 return;
             }
             setContentView(R.layout.patientprofile);
         }
+    }
+
+    @SuppressLint("MissingInflatedId")
+    public void onClickNextEmployeeRegLayout(View view){
+
+        if(!inputsInit()){
+            return;
+        }
+
+        setContentView(R.layout.reg_employee_layout_2);
+
+        adminPanelHospitalSpinner = (Spinner) findViewById(R.id.adminPanelHospitalSpinner);
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.hospitales, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        adminPanelPostlSpinner = (Spinner) findViewById(R.id.adminPanelPostlSpinner);
+        adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.posts, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        adminPanelHospitalSpinner.setAdapter(adapter);
+        adminPanelPostlSpinner.setAdapter(adapter2);
     }
 
     public void onClickSubmit(View view){
@@ -173,9 +179,40 @@ public class MainActivity extends AppCompatActivity{
         checkCheckBoxes(timesCheckBoxList, timesList);
         checkCheckBoxes(daysCheckBoxList, daysList);
 
-        System.out.println(timesList.get(1));
+        userController.createNewUser(
+                name.getText().toString(),
+                surname.getText().toString(),
+                thirdname.getText().toString(),
+                phoneNumber.getText().toString(),
+                email.getText().toString(),
+                password.getText().toString(),
+                post,
+                daysList,
+                timesList,
+                hospital);
+        setContentView(R.layout.activity_main);
     }
 
+    private boolean inputsInit(){
+        name = findViewById(R.id.surname);
+        surname = findViewById(R.id.name);
+        thirdname = findViewById(R.id.thirdname);
+        phoneNumber = findViewById(R.id.phonenumber);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        password2 = findViewById(R.id.password2);
+        errorView = findViewById(R.id.errorLabel);
+
+        //ПЕРЕДЕЛАТЬ
+        if(!inputValidation(name)){return false;};
+        if(!inputValidation(surname)){return false;};
+        if(!inputValidation(thirdname)){return false;};
+        if(!inputValidation(phoneNumber)){return false;};
+        if(!inputValidation(email)){return false;};
+        if(!inputValidation(password)){return false;};
+        if(!inputValidation(password2)){return false;};
+        return true;
+    }
 
     private void getAllChilds(List<CheckBox> list,LinearLayout linearLayout){
         int daysChildCount = linearLayout.getChildCount();
@@ -191,6 +228,71 @@ public class MainActivity extends AppCompatActivity{
                 list.add(box.getText().toString());
             }
         }
+    }
+
+    public void onClickBackToRegEmployee_One(View view){
+        setContentView(R.layout.reg_employee_layout_1);
+    }
+    //DOCTORAPPOITMENT
+
+    private String DAHospitalSpinnerSelected;
+    private String DAPostSpinnerSelected;
+    private Spinner DADoctorSpinner;
+    private ArrayAdapter<String > DADoctorSpinnerAdapter;
+    private Spinner DAPostSpinner;
+    private List<String> doctorsList;
+    @SuppressLint("MissingInflatedId")
+    public void onClickDoctorAppointment(View view){
+
+        setContentView(R.layout.doctorsappointment);
+
+        Spinner DAHospitalSpinner = (Spinner) findViewById(R.id.DAHospitalSpinner);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.hospitales, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        DAHospitalSpinner.setAdapter(adapter3);
+        DAHospitalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DAHospitalSpinnerSelected = DAHospitalSpinner.getSelectedItem().toString();
+                System.out.println(DAHospitalSpinner.getSelectedItem());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        DAPostSpinner = (Spinner) findViewById(R.id.DAPostSpinner);
+        adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.posts, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        DAPostSpinner.setAdapter(adapter2);
+
+        DAPostSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DAPostSpinnerSelected = DAPostSpinner.getSelectedItem().toString();
+                doctorsListInit();
+                if(doctorsList == null){return;}
+                DADoctorSpinner.setAdapter(DADoctorSpinnerAdapter);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void doctorsListInit(){
+        DADoctorSpinner = (Spinner) findViewById(R.id.DADoctorSpinner);
+        doctorsList = userController.getEmployeeByHospitalAndPost(DAHospitalSpinnerSelected, DAPostSpinnerSelected);
+        DADoctorSpinnerAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, doctorsList);
+        DADoctorSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
+    }
+
+    public void onClickHospitalSpinner(View view){
+        System.out.println("123123");
     }
 
 }

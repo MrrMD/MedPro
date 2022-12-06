@@ -9,14 +9,17 @@ public class User {
     private String email;
     private String password;
     private Boolean isAdmin;
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
+    private Boolean isEmployee;
 
     public boolean isAdmin(){
         return isAdmin;
     }
+
+    public boolean isEmoloyee(){
+        return isEmployee;
+    }
+
+    public boolean isEmployee() {return  isEmployee; }
 
     public User(String name, String surname, String thirdName, String phoneNumber, String email, String password) {
         this.name = name;
@@ -26,11 +29,24 @@ public class User {
         this.email = email;
         this.password = password;
         this.isAdmin = false;
+        this.isEmployee = false;
+    }
+
+    public User(String name, String surname, String thirdName, String phoneNumber, String email, String password, Boolean isEmployeeFlag) {
+        this.name = name;
+        this.surname = surname;
+        this.thirdName = thirdName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.isAdmin = false;
+        this.isEmployee =true;
     }
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+        this.isEmployee = false;
         this.isAdmin = true;
     }
 
@@ -69,4 +85,5 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

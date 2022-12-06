@@ -1,5 +1,7 @@
 package ru.smallstash.med.UserDAO;
 
+import android.annotation.SuppressLint;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +31,7 @@ public class UserDAO {
     public void createNewUser(String name, String surname, String thirdName,
                               String phoneNumber, String email, String password, String post, List<String> days, List<String> receptionHours, String hospital){
         epmloyeeList.add(new Employee(name,surname,thirdName,phoneNumber,email,password, post, days, receptionHours, hospital));
-        System.out.println("User was created");
-        System.out.println(patientList.get(0));
+        System.out.println("Employee was created");
     }
 
     public User getUserByEmail(String email){
@@ -44,7 +45,32 @@ public class UserDAO {
                 return admin;
             }
         }
+        for (Employee employee:epmloyeeList) {
+            if(employee.getEmail().equals(email)){
+                return employee;
+            }
+        }
         return null;
+    }
+
+    public List<Employee> getEmployeeByPost(String post){
+        List<Employee> list = new ArrayList<>();
+        for (Employee employee:epmloyeeList) {
+            if(employee.getPost().equals(post)){
+                list.add(employee);
+            }
+        }
+        return list.isEmpty() ? null : list;
+    }
+
+    public List<Employee> getEmployeeByHospital(String hosital){
+        List<Employee> list = new ArrayList<>();
+        for (Employee employee:epmloyeeList) {
+            if(employee.getHospital().equals(hosital)){
+                list.add(employee);
+            }
+        }
+        return list.isEmpty() ? null : list;
     }
 
     public boolean userSignInValidation(String email, String password){
@@ -60,6 +86,13 @@ public class UserDAO {
                 return true;
             }
         }
+        for (Employee employee:epmloyeeList) {
+            if(employee.getEmail().equals(email) && employee.getPassword().equals(password)){
+                System.out.println("ok");
+                return true;
+            }
+        }
         return false;
     }
+
 }

@@ -3,6 +3,7 @@ package ru.smallstash.med.controllers;
 import java.util.List;
 
 import ru.smallstash.med.Services.UserService;
+import ru.smallstash.med.entites.Employee;
 
 public class UserController {
     UserService userService = new UserService();
@@ -23,8 +24,25 @@ public class UserController {
         return userService.userSignInValidation(login,password);
     }
 
+    public boolean userEmailExistCheck(String email){
+        return userService.isEmailExist(email);
+    }
+
+    public List<Employee> getEmployeeByPost(String post){
+       return userService.getEmployeeByPost(post);
+    }
+
+    public List<String> getEmployeeByHospitalAndPost(String hospital, String post){
+        return userService.getEmployeeByHospitalAndPost(hospital, post);
+    }
+
     public boolean isAdmin(String email){
        return userService.isAdmin(email);
     }
+
+    public boolean isEmployee(String email){
+        return userService.isEmployee(email);
+    }
+
 
 }

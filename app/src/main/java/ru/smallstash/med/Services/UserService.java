@@ -1,13 +1,16 @@
 package ru.smallstash.med.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.smallstash.med.UserDAO.UserDAO;
+import ru.smallstash.med.entites.Employee;
 import ru.smallstash.med.entites.User;
 
 public class UserService {
 
     UserDAO userDAO = new UserDAO();
+    User user;
 
     public void createNewUser(String name, String surname, String thirdName,
                               String phoneNumber, String email, String password){
@@ -27,9 +30,44 @@ public class UserService {
         return userDAO.userSignInValidation(login, password);
     }
 
+    public List<Employee> getEmployeeByPost(String post){
+        return userDAO.getEmployeeByPost(post);
+    }
+
+    public List<Employee> getEmployeeByHospital(String hosital){
+        return userDAO.getEmployeeByHospital(hosital);
+    }
+
+    public List<String> getEmployeeByHospitalAndPost(String hospital, String post){
+        List<Employee> employeesByHospital = getEmployeeByHospital(hospital);
+        List<String> list = new ArrayList<>();
+        if(employeesByHospital == null){
+            return null;
+        };
+        for (Employee employee:employeesByHospital) {
+            if(employee.getPost().equals(post)){
+                list.add(employee.getFullName());
+            }
+        }
+        return list;
+    }
+
     public boolean isAdmin(String email){
-        User user = userDAO.getUserByEmail(email);
+        user = userDAO.getUserByEmail(email);
         return user.isAdmin();
+    }
+
+    public boolean isEmployee(String email){
+        user = userDAO.getUserByEmail(email);
+        return user.isEmployee();
+    }
+
+    public boolean isEmailExist(String email){
+        user = userDAO.getUserByEmail(email);
+        if(user == null) {
+            return false;
+        }
+        return true;
     }
 
 }

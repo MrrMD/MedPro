@@ -10,7 +10,6 @@ public class Employee extends User{
     private List<String> receptionHours;
     private String hospital;
 
-
     public Employee(String name, String surname, String thirdName, String phoneNumber, String email,
                     String password, String post, List<String> days, List<String> receptionHours, String hospital) {
         super(name, surname, thirdName, phoneNumber, email, password);
@@ -18,5 +17,27 @@ public class Employee extends User{
         this.days = days;
         this.receptionHours = receptionHours;
         this.hospital = hospital;
+        System.out.println(this);
+
+    }
+
+    public String getFullName(){
+        return getSurname() + " " + getName() + " " + getThirdName();
+    }
+
+    public String getPost() {
+        return post;
+    }
+
+    public List<String> getDays() {
+        return days;
+    }
+
+    public List<String> getReceptionHours() {
+        return receptionHours;
+    }
+
+    public String getHospital() {
+        return hospital;
     }
 }

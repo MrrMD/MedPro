@@ -49,5 +49,34 @@
     <string name="postLabel">Выберите направление</string>
     <string name="DayLabel">Укажите дни</string>
     <string name="TimeLabel">Укажите время</string>
+    <!--    AdminPanel regEmployee_Layout_2 Buttons-->
+    <string name="nextBtn">Далее</string>
+    <string name="cancelBtn_ap">Назад</string>
+    <!--    AdminPanel reg1 labels  -->
+    <string name="APapp_name">ProMed</string>
+    <string name="APsurnameLabel">Фамилия</string>
+    <string name="APsurnameLabelHint">Введите фамилию...</string>
+    <string name="APnameLabel">Имя</string>
+    <string name="APnameLabelHint">Введите имя...</string>
+    <string name="APthirdNameLabel">Отчество</string>
+    <string name="APthirdNameLabelHint">Введите отчество...</string>
+    <string name="APphoneNumbe">Номер телефона</string>
+    <string name="APphoneNumberHint">Введите номер телефона...</string>
+    <string name="APemailLabel">Почта</string>
+    <string name="APemailLabelHint">Введите почту...</string>
+    <string name="APpasswordLabel">Пароль</string>
+    <string name="APpasswordLabelHint">Введите пароль...</string>
+    <string name="APpassword2Label">Повторите пароль</string>
+    <string name="APpassword2LabelHint">Повторите пароль...</string>
+
+    <!--    DoctorsAppoitment Labels-->
+    <string name="hospitalLabelDA">Выберите учереждение</string>
+    <string name="postLabelDA">Выберите направление</string>
+    <string name="DayLabelDA">Укажите день</string>
+    <string name="TimeLabelDA">Укажите время</string>
+    <string name="DoctorLabelDA">Выберите врача</string>
+    <!--    AdminPanel regEmployee_Layout_2 Buttons-->
+    <string name="nextBtnDA">Далее</string>
+    <string name="cancelBtn_apDA">Назад</string>
 
 </resources>
