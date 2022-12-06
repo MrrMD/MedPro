@@ -53,6 +53,23 @@ public class UserDAO {
         return null;
     }
 
+    public List<String> getDoctorsDaysByFullName(String fullname){
+        for (Employee employee:epmloyeeList) {
+            if (employee.getFullName().equals(fullname)) {
+                return employee.getDays();
+            }
+        }
+        return null;
+    }
+    public List<String> getDoctorsTimesyFullName(String fullname){
+        for (Employee employee:epmloyeeList) {
+            if (employee.getFullName().equals(fullname)) {
+                return employee.getDays();
+            }
+        }
+        return null;
+    }
+
     public List<Employee> getEmployeeByPost(String post){
         List<Employee> list = new ArrayList<>();
         for (Employee employee:epmloyeeList) {

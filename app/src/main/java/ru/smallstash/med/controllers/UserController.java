@@ -36,6 +36,14 @@ public class UserController {
         return userService.getEmployeeByHospitalAndPost(hospital, post);
     }
 
+    public List<String> getDoctorsDaysByFullName(String fullname){
+        return userService.getDoctorsDaysByFullName(fullname);
+    }
+
+    public List<String> getDoctorsTimesByFullname(String fullname){
+        return userService.getDoctorsTimesyFullName(fullname);
+    }
+
     public boolean isAdmin(String email){
        return userService.isAdmin(email);
     }

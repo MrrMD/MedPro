@@ -52,6 +52,14 @@ public class UserService {
         return list;
     }
 
+    public List<String> getDoctorsDaysByFullName(String fullname){
+        return userDAO.getDoctorsDaysByFullName(fullname);
+    }
+
+    public List<String> getDoctorsTimesyFullName(String fullname) {
+        return userDAO.getDoctorsTimesyFullName(fullname);
+    }
+
     public boolean isAdmin(String email){
         user = userDAO.getUserByEmail(email);
         return user.isAdmin();

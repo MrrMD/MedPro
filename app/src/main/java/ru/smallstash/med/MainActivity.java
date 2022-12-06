@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity{
         System.out.println("Admin creating");
         userController.createNewUser("admin", "admin","Clinic Hospital №1");
         userController.createNewUser("123","123","123","123","123","123");
-
     }
 
     @Override
@@ -160,6 +159,7 @@ public class MainActivity extends AppCompatActivity{
         adminPanelPostlSpinner.setAdapter(adapter2);
     }
 
+    @SuppressLint("MissingInflatedId")
     public void onClickSubmit(View view){
         hospitalSpinner = findViewById(R.id.adminPanelHospitalSpinner);
         postSpinner  = findViewById(R.id.adminPanelPostlSpinner);
@@ -235,27 +235,52 @@ public class MainActivity extends AppCompatActivity{
     }
     //DOCTORAPPOITMENT
 
-    private String DAHospitalSpinnerSelected;
-    private String DAPostSpinnerSelected;
-    private Spinner DADoctorSpinner;
-    private ArrayAdapter<String > DADoctorSpinnerAdapter;
-    private Spinner DAPostSpinner;
+    private Spinner postSpinnerDA;
+    private Spinner doctorSpinnerDA;
+    private Spinner daysSpinnerDA;
+    private Spinner hospitalSpinnerDA;
+    private Spinner timesSpinnerDA;
+
+    private String hospitalSpinnerSelectedDA;
+    private String postSpinnerSelectedDA;
+    private String doctorSpinnerSelectedDA;
+    private String daysSpinnerSelectedDA;
+    private String timeSpinnerSelected;
+
+    private ArrayAdapter<CharSequence> hospitalSpinnerAdapterDA;
+    private ArrayAdapter<String> doctorSpinnerAdapterDA;
+    private ArrayAdapter<String> daysSpinnerAdapterDA;
+    private ArrayAdapter<CharSequence> postSpinnerAdapterDA;
+    private ArrayAdapter<String> timesSpinnerAdapterDA;
+
     private List<String> doctorsList;
+    private List<String> doctorReceptionTimeList;
+    private List<String> receptionDaysList;
+
+    public void onClickBackToProfile(View view){
+        setContentView(R.layout.patientprofile);
+    }
+
     @SuppressLint("MissingInflatedId")
     public void onClickDoctorAppointment(View view){
 
         setContentView(R.layout.doctorsappointment);
+        hospitalSpinnerDA = (Spinner) findViewById(R.id.DAHospitalSpinner);
+        postSpinnerDA = (Spinner) findViewById(R.id.DAPostSpinner);
 
-        Spinner DAHospitalSpinner = (Spinner) findViewById(R.id.DAHospitalSpinner);
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> hospitalSpinnerAdapterDA = ArrayAdapter.createFromResource(this,
                 R.array.hospitales, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        DAHospitalSpinner.setAdapter(adapter3);
-        DAHospitalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        hospitalSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        hospitalSpinnerDA.setAdapter(hospitalSpinnerAdapterDA);
+        hospitalSpinnerDA.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                DAHospitalSpinnerSelected = DAHospitalSpinner.getSelectedItem().toString();
-                System.out.println(DAHospitalSpinner.getSelectedItem());
+                hospitalSpinnerSelectedDA = hospitalSpinnerDA.getSelectedItem().toString();
+                hospitalsInit();
+                postSpinnerDA.setAdapter(postSpinnerAdapterDA);
+                if(doctorSpinnerDA!=null) {
+                    doctorSpinnerDA.setAdapter(null);
+                }
             }
 
             @Override
@@ -263,36 +288,72 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        DAPostSpinner = (Spinner) findViewById(R.id.DAPostSpinner);
-        adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.posts, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        DAPostSpinner.setAdapter(adapter2);
-
-        DAPostSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        postSpinnerDA.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                DAPostSpinnerSelected = DAPostSpinner.getSelectedItem().toString();
+                postSpinnerSelectedDA = postSpinnerDA.getSelectedItem().toString();
                 doctorsListInit();
                 if(doctorsList == null){return;}
-                DADoctorSpinner.setAdapter(DADoctorSpinnerAdapter);
+                doctorSpinnerDA.setAdapter(doctorSpinnerAdapterDA);
+                doctorSpinnerDA.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        doctorSpinnerSelectedDA = doctorSpinnerDA.getSelectedItem().toString();
+                        if(receptionDaysList == null){return;}
+                        doctorsDaysInit();
+                        daysSpinnerDA.setAdapter(daysSpinnerAdapterDA);
+                        daysSpinnerDA.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                daysSpinnerSelectedDA = daysSpinnerDA.getSelectedItem().toString();
+                                doctorsTimesInit();
+                                if(doctorReceptionTimeList == null){return;}
+                                timesSpinnerDA.setAdapter(timesSpinnerAdapterDA);
+                            }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    private void hospitalsInit(){
+        postSpinnerAdapterDA = ArrayAdapter.createFromResource(this,
+                R.array.posts, android.R.layout.simple_spinner_item);
+        postSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
     private void doctorsListInit(){
-        DADoctorSpinner = (Spinner) findViewById(R.id.DADoctorSpinner);
-        doctorsList = userController.getEmployeeByHospitalAndPost(DAHospitalSpinnerSelected, DAPostSpinnerSelected);
-        DADoctorSpinnerAdapter = new ArrayAdapter<String>(
+        doctorSpinnerDA = (Spinner) findViewById(R.id.DADoctorSpinner);
+        doctorsList = userController.getEmployeeByHospitalAndPost(hospitalSpinnerSelectedDA, postSpinnerSelectedDA);
+        doctorSpinnerAdapterDA = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, doctorsList);
-        DADoctorSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
+        doctorSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
     }
 
-    public void onClickHospitalSpinner(View view){
-        System.out.println("123123");
+    private void doctorsDaysInit(){
+        daysSpinnerDA = (Spinner) findViewById(R.id.DADaysSpinner);
+        receptionDaysList = userController.getDoctorsDaysByFullName(doctorSpinnerSelectedDA);
+        daysSpinnerAdapterDA = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, receptionDaysList);
+        daysSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
+    }
+    private void doctorsTimesInit(){
+        timesSpinnerDA = (Spinner) findViewById(R.id.DADaysSpinner);
+        doctorReceptionTimeList = userController.getDoctorsTimesByFullname(doctorSpinnerSelectedDA);
+        timesSpinnerAdapterDA = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, doctorReceptionTimeList);
+        timesSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
     }
 
 }
