@@ -1,5 +1,9 @@
 package ru.smallstash.med.Services;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,38 +30,28 @@ public class UserService {
         userDAO.createNewUser(name,surname,thirdName,phoneNumber,email,password, post, days, receptionHours, hospital);
     }
 
-    public boolean userSignInValidation(String login, String password){
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public User userSignInValidation(String login, String password){
         return userDAO.userSignInValidation(login, password);
     }
 
-    public List<Employee> getEmployeeByPost(String post){
-        return userDAO.getEmployeeByPost(post);
-    }
 
     public List<Employee> getEmployeeByHospital(String hosital){
         return userDAO.getEmployeeByHospital(hosital);
     }
 
-    public List<String> getEmployeeByHospitalAndPost(String hospital, String post){
+    public List<Employee> getEmployeeByHospitalAndPost(String hospital, String post){
         List<Employee> employeesByHospital = getEmployeeByHospital(hospital);
-        List<String> list = new ArrayList<>();
+        List<Employee> list = new ArrayList<>();
         if(employeesByHospital == null){
             return null;
         };
         for (Employee employee:employeesByHospital) {
             if(employee.getPost().equals(post)){
-                list.add(employee.getFullName());
+                list.add(employee);
             }
         }
         return list;
-    }
-
-    public List<String> getDoctorsDaysByFullName(String fullname){
-        return userDAO.getDoctorsDaysByFullName(fullname);
-    }
-
-    public List<String> getDoctorsTimesFullName(String fullname) {
-        return userDAO.getDoctorsTimesFullName(fullname);
     }
 
     public boolean isAdmin(String email){

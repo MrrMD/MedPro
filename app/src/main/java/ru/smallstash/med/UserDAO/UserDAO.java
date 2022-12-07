@@ -57,36 +57,6 @@ public class UserDAO {
         return null;
     }
 
-    @SuppressLint("NewApi")
-    public List<String> getDoctorsDaysByFullName(String fullname){
-        for (Employee employee:epmloyeeList) {
-            if (employee.getFullName().equals(fullname)) {
-                System.out.println("dao");
-                employee.getDays().forEach(System.out::println);
-                return employee.getDays();
-            }
-        }
-        return null;
-    }
-    public List<String> getDoctorsTimesFullName(String fullname){
-        for (Employee employee:epmloyeeList) {
-            if (employee.getFullName().equals(fullname)) {
-                return employee.getReceptionHours();
-            }
-        }
-        return null;
-    }
-
-    public List<Employee> getEmployeeByPost(String post){
-        List<Employee> list = new ArrayList<>();
-        for (Employee employee:epmloyeeList) {
-            if(employee.getPost().equals(post)){
-                list.add(employee);
-            }
-        }
-        return list.isEmpty() ? null : list;
-    }
-
     public List<Employee> getEmployeeByHospital(String hosital){
         List<Employee> list = new ArrayList<>();
         for (Employee employee:epmloyeeList) {
@@ -98,27 +68,25 @@ public class UserDAO {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public boolean userSignInValidation(String email, String password){
+    public User userSignInValidation(String email, String password){
         for (Patient patient:patientList) {
             if(patient.getEmail().equals(email) && patient.getPassword().equals(password)){
-                System.out.println("ok");
-                return true;
+                return patient;
             }
         }
         for (Admin admin:adminList) {
             if(admin.getEmail().equals(email) && admin.getPassword().equals(password)){
                 System.out.println("ok");
-
-                return true;
+                return admin;
             }
         }
         for (Employee employee:epmloyeeList) {
             if(employee.getEmail().equals(email) && employee.getPassword().equals(password)){
                 System.out.println("ok");
-                return true;
+                return employee;
             }
         }
-        return false;
+        return null;
     }
 
 }
