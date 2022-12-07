@@ -1,6 +1,9 @@
 package ru.smallstash.med.UserDAO;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,7 @@ public class UserDAO {
 
     private List<Patient> patientList = new ArrayList<>();
     private List<Admin> adminList = new ArrayList<>();
-    private List<Employee> epmloyeeList = new ArrayList<>();
+    private List<Employee> epmloyeeList = new ArrayList<Employee>();
 
     public void createNewUser(String name, String surname, String thirdName,
                               String phoneNumber, String email, String password){
@@ -28,10 +31,11 @@ public class UserDAO {
         System.out.println("Admin was created");
     }
 
+    @SuppressLint("NewApi")
     public void createNewUser(String name, String surname, String thirdName,
                               String phoneNumber, String email, String password, String post, List<String> days, List<String> receptionHours, String hospital){
         epmloyeeList.add(new Employee(name,surname,thirdName,phoneNumber,email,password, post, days, receptionHours, hospital));
-        System.out.println("Employee was created");
+        return;
     }
 
     public User getUserByEmail(String email){
@@ -53,18 +57,21 @@ public class UserDAO {
         return null;
     }
 
+    @SuppressLint("NewApi")
     public List<String> getDoctorsDaysByFullName(String fullname){
         for (Employee employee:epmloyeeList) {
             if (employee.getFullName().equals(fullname)) {
+                System.out.println("dao");
+                employee.getDays().forEach(System.out::println);
                 return employee.getDays();
             }
         }
         return null;
     }
-    public List<String> getDoctorsTimesyFullName(String fullname){
+    public List<String> getDoctorsTimesFullName(String fullname){
         for (Employee employee:epmloyeeList) {
             if (employee.getFullName().equals(fullname)) {
-                return employee.getDays();
+                return employee.getReceptionHours();
             }
         }
         return null;
@@ -90,6 +97,7 @@ public class UserDAO {
         return list.isEmpty() ? null : list;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean userSignInValidation(String email, String password){
         for (Patient patient:patientList) {
             if(patient.getEmail().equals(email) && patient.getPassword().equals(password)){
@@ -100,6 +108,7 @@ public class UserDAO {
         for (Admin admin:adminList) {
             if(admin.getEmail().equals(email) && admin.getPassword().equals(password)){
                 System.out.println("ok");
+
                 return true;
             }
         }

@@ -9,8 +9,8 @@ import ru.smallstash.med.entites.User;
 
 public class UserService {
 
-    UserDAO userDAO = new UserDAO();
-    User user;
+    private UserDAO userDAO = new UserDAO();
+    private User user;
 
     public void createNewUser(String name, String surname, String thirdName,
                               String phoneNumber, String email, String password){
@@ -56,8 +56,8 @@ public class UserService {
         return userDAO.getDoctorsDaysByFullName(fullname);
     }
 
-    public List<String> getDoctorsTimesyFullName(String fullname) {
-        return userDAO.getDoctorsTimesyFullName(fullname);
+    public List<String> getDoctorsTimesFullName(String fullname) {
+        return userDAO.getDoctorsTimesFullName(fullname);
     }
 
     public boolean isAdmin(String email){

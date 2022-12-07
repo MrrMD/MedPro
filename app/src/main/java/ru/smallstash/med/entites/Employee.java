@@ -14,11 +14,10 @@ public class Employee extends User{
                     String password, String post, List<String> days, List<String> receptionHours, String hospital) {
         super(name, surname, thirdName, phoneNumber, email, password);
         this.post = post;
-        this.days = days;
-        this.receptionHours = receptionHours;
+        this.days = new ArrayList<>(days);
+        this.receptionHours = new ArrayList<>(receptionHours);
         this.hospital = hospital;
         System.out.println(this);
-
     }
 
     public String getFullName(){
@@ -26,18 +25,21 @@ public class Employee extends User{
     }
 
     public String getPost() {
-        return post;
+        return this.post;
     }
 
     public List<String> getDays() {
-        return days;
+        return this.days;
     }
 
     public List<String> getReceptionHours() {
-        return receptionHours;
+        if(this.receptionHours.isEmpty()){
+            System.out.println("ПУСТО1");
+        }
+        return this.receptionHours;
     }
 
     public String getHospital() {
-        return hospital;
+        return this.hospital;
     }
 }

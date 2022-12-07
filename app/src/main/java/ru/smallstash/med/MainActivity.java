@@ -169,15 +169,19 @@ public class MainActivity extends AppCompatActivity{
         post = postSpinner.getSelectedItem().toString();
         System.out.println(hospital);
         System.out.println(post);
+        daysCheckBoxList.clear();
+        timesCheckBoxList.clear();
         getAllChilds(daysCheckBoxList, findViewById(R.id.days));
         getAllChilds(daysCheckBoxList, findViewById(R.id.days2));
         getAllChilds(timesCheckBoxList, findViewById(R.id.times1));
         getAllChilds(timesCheckBoxList, findViewById(R.id.times2));
         getAllChilds(timesCheckBoxList, findViewById(R.id.times3));
         getAllChilds(timesCheckBoxList, findViewById(R.id.times4));
+        daysList.clear();
+        timesList.clear();
 
-        checkCheckBoxes(timesCheckBoxList, timesList);
-        checkCheckBoxes(daysCheckBoxList, daysList);
+        timesList = checkCheckBoxes(timesCheckBoxList);
+        daysList = checkCheckBoxes(daysCheckBoxList);
 
         userController.createNewUser(
                 name.getText().toString(),
@@ -190,12 +194,13 @@ public class MainActivity extends AppCompatActivity{
                 daysList,
                 timesList,
                 hospital);
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.reg_employee_layout_1);
     }
 
     private boolean inputsInit(){
-        name = findViewById(R.id.surname);
-        surname = findViewById(R.id.name);
+        name = findViewById(R.id.name);
+        surname = findViewById(R.id.surname);
         thirdname = findViewById(R.id.thirdname);
         phoneNumber = findViewById(R.id.phonenumber);
         email = findViewById(R.id.email);
@@ -222,12 +227,14 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private void checkCheckBoxes(List<CheckBox> checkBoxes, List<String> list){
+    private List<String> checkCheckBoxes(List<CheckBox> checkBoxes){
+        List<String> list = new ArrayList<>();
         for (CheckBox box:checkBoxes) {
             if(box.isChecked()){
                 list.add(box.getText().toString());
             }
         }
+        return list;
     }
 
     public void onClickBackToRegEmployee_One(View view){
@@ -299,14 +306,14 @@ public class MainActivity extends AppCompatActivity{
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         doctorSpinnerSelectedDA = doctorSpinnerDA.getSelectedItem().toString();
-                        if(receptionDaysList == null){return;}
                         doctorsDaysInit();
+                        if(receptionDaysList == null){return;}
                         daysSpinnerDA.setAdapter(daysSpinnerAdapterDA);
                         daysSpinnerDA.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 daysSpinnerSelectedDA = daysSpinnerDA.getSelectedItem().toString();
-                                doctorsTimesInit();
+//                               doctorsTimesInit();
                                 if(doctorReceptionTimeList == null){return;}
                                 timesSpinnerDA.setAdapter(timesSpinnerAdapterDA);
                             }
@@ -341,20 +348,23 @@ public class MainActivity extends AppCompatActivity{
         doctorSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
     }
 
+    @SuppressLint("NewApi")
     private void doctorsDaysInit(){
         daysSpinnerDA = (Spinner) findViewById(R.id.DADaysSpinner);
         receptionDaysList = userController.getDoctorsDaysByFullName(doctorSpinnerSelectedDA);
+        receptionDaysList.forEach(System.out::println);
+
         daysSpinnerAdapterDA = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, receptionDaysList);
         daysSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
     }
-    private void doctorsTimesInit(){
-        timesSpinnerDA = (Spinner) findViewById(R.id.DADaysSpinner);
-        doctorReceptionTimeList = userController.getDoctorsTimesByFullname(doctorSpinnerSelectedDA);
-        timesSpinnerAdapterDA = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, doctorReceptionTimeList);
-        timesSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
-    }
+//    private void doctorsTimesInit(){
+//        timesSpinnerDA = (Spinner) findViewById(R.id.DADaysSpinner);
+//        doctorReceptionTimeList = userController.getDoctorsTimesByFullname(doctorSpinnerSelectedDA);
+//        timesSpinnerAdapterDA = new ArrayAdapter<String>(
+//                this, android.R.layout.simple_spinner_item, doctorReceptionTimeList);
+//        timesSpinnerAdapterDA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item );
+//    }
 
 }
 

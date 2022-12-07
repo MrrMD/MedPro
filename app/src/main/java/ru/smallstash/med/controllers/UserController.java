@@ -1,12 +1,14 @@
 package ru.smallstash.med.controllers;
 
+import android.annotation.SuppressLint;
+
 import java.util.List;
 
 import ru.smallstash.med.Services.UserService;
 import ru.smallstash.med.entites.Employee;
 
 public class UserController {
-    UserService userService = new UserService();
+    private UserService userService = new UserService();
 
     public void createNewUser(String name, String surname, String thirdName, String phoneNumber, String email, String password){
         userService.createNewUser(name, surname, thirdName, phoneNumber, email,password);
@@ -15,8 +17,11 @@ public class UserController {
     public void createNewUser(String email, String password, String hospital){
         userService.createNewUser(email,password, hospital);
     }
+    @SuppressLint("NewApi")
     public void createNewUser(String name, String surname, String thirdName, String phoneNumber, String email,
                               String password, String post, List<String> days, List<String> receptionHours, String hospital){
+        System.out.println(name);
+        days.forEach(System.out::println);
         userService.createNewUser(name, surname, thirdName, phoneNumber, email,password, post, days, receptionHours, hospital);
     }
 
@@ -41,7 +46,7 @@ public class UserController {
     }
 
     public List<String> getDoctorsTimesByFullname(String fullname){
-        return userService.getDoctorsTimesyFullName(fullname);
+        return userService.getDoctorsTimesFullName(fullname);
     }
 
     public boolean isAdmin(String email){
