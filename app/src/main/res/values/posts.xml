@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="posts">
-        <item>ВРАЧ_АЛЛЕРГОЛОГ</item>
-        <item>ВРАЧ_ЭПИДЕМИОЛОГ</item>
-        <item>ВРАЧ_ДЕЗИНФЕКЦИОНИСТ</item>
-        <item>ВРАЧ_КАРДИОЛОГ</item>
-        <item>ВРАЧ_ОНКОЛОГ</item>
-        <item>ВРАЧ_ТРАВМАТОЛОГ_ОРТОПЕД</item>
-        <item>ВРАЧ_ФИЗИОТЕРАПЕВТ</item>
-        <item>ВРАЧ_РЕНТГЕНОЛОГ</item>
-        <item>ВРАЧ_УРОЛОГ</item>
-        <item>ВРАЧ_ТЕРАПЕВТ</item>
-        <item>ВРАЧ_ПЕДИАТР</item>
-        <item>ВРАЧ_ХИРУРГ</item>
-        <item>ВРАЧ_НЕВРОПАТОЛОГ</item>
-        <item>ВРАЧ_ПСИХИАТР</item>
-        <item>ВРАЧ_ОФТАЛЬМОЛОГ</item>
-        <item>ВРАЧ_ДЕРМАТОВЕНЕРОЛОГГ</item>
-        <item>ВРАЧ_СТОМАТОЛОГ</item>
+        <item>Врач аллерголог</item>
+        <item>Врач эпидемиолог</item>
+        <item>Врач дезинфенкционист</item>дезинфенкционист
+        <item>Врач кардиолог</item>
+        <item>Врач онколог</item>
+        <item>Врач травматолог-ортопед</item>
+        <item>Врач физиотерапевт</item>
+        <item>Врач рентгенолог</item>
+        <item>Врач уролог</item>
+        <item>Врач терапевт</item>
+        <item>Врач педиатр</item>
+        <item>Врач хирург</item>
+        <item>Врач нервопатолог</item>
+        <item>Врач психиатр</item>
+        <item>Врач офтальмолог</item>
+        <item>Врач дерматовенеролог</item>
+        <item>Врач стоматолог</item>
     </string-array>
 </resources>
 

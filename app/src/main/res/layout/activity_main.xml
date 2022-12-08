@@ -6,27 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
     <Button
         android:id="@+id/regBtn"
         android:layout_width="260dp"
         android:layout_height="50dp"
         android:layout_marginStart="158dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="159dp"
+        android:layout_marginEnd="158dp"
         android:gravity="center"
-        android:text="@string/signUp"
         android:onClick="onClickSignUpBtn"
+        android:text="@string/signUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/InputBtn" />
@@ -36,14 +25,24 @@
         android:layout_width="260dp"
         android:layout_height="50dp"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="292dp"
-        android:layout_marginEnd="159dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="158dp"
         android:gravity="center"
         android:onClick="onClickSignInBtn"
         android:text="@string/signIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="412dp"
+        android:layout_height="153dp"
+        android:layout_marginTop="185dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

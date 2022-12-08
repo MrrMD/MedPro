@@ -2,7 +2,13 @@
 <resources>
     <string-array name="hospitales">
         <item>Клиническая больница №1</item>
-        <item>Клиническая больница №4</item>
+        <item>Клиническая больница №2</item>
         <item>Военный госпиталь</item>
+        <item>Клиническая больница №3</item>
+        <item>Клиническая больница №4</item>
+        <item>Клиническая больница №5</item>
+        <item>Клиническая больница №6</item>
+        <item>Клиническая больница №7</item>
+        <item>Клиническая больница №8</item>
     </string-array>
 </resources>

@@ -1,34 +1,33 @@
 <resources>
-<!--    RegLayout labels and inputs-->
+    <!--    RegLayout labels and inputs-->
     <string name="app_name">ProMed</string>
     <string name="surnameLabel">Ваша фамилия</string>
-    <string name="surnameLabelHint">Введите вашу фамилию...</string>
+    <string name="surnameLabelHint">Фамилия</string>
     <string name="nameLabel">Ваше имя</string>
-    <string name="nameLabelHint">Введите ваше имя...</string>
+    <string name="nameLabelHint">Имя</string>
     <string name="thirdNameLabel">Ваше отчество</string>
-    <string name="thirdNameLabelHint">Введите ваше отчество...</string>
+    <string name="thirdNameLabelHint">Отчество</string>
     <string name="phoneNumbe">Ваш номер телефона</string>
-    <string name="phoneNumberHint">Введите ваш номер телефона...</string>
+    <string name="phoneNumberHint">Номер телефона</string>
     <string name="emailLabel">Ваша почта</string>
-    <string name="emailLabelHint">Введите вашу почту...</string>
+    <string name="emailLabelHint">Почта</string>
     <string name="passwordLabel">Придумайте ваш пароль</string>
-    <string name="passwordLabelHint">Введите ваш пароль...</string>
+    <string name="passwordLabelHint">Пароль</string>
     <string name="password2Label">Повторите ваш пароль</string>
-    <string name="password2LabelHint">Повторите ваш пароль...</string>
-<!--    RegLayout Input Errors-->
+    <string name="password2LabelHint">Повторите пароль</string>
+    <!--    RegLayout Input Errors-->
     <string name="inputEmpty">Вы не заполнили все поля</string>
     <string name="inputHaveUnderTwoSim">Одно из введенных значений не корректно</string>
     <string name="passwordsAreNotTheSame">Введенные пароли - не совпадают</string>
-<!--    RegLayout Buttons-->
+    <!--    RegLayout Buttons-->
     <string name="submitBtn">Подтвердить</string>
     <string name="cancelBtn">Отмена</string>
 
-    
-<!--    MainLayout-->
-<!--    MainLayut Buttons-->
+
+    <!--    MainLayout-->
+    <!--    MainLayut Buttons-->
     <string name="signIn">Войти</string>
     <string name="signUp">Зарегистрироваться</string>
-
 
     <!--    SignIn Layout-->
     <!--    SignIn layout labels-->
@@ -40,13 +39,13 @@
 
     <!--    PatientLayout-->
     <!--    PatientLayout Labels-->
-    <string name="myAppointments">Мои записи на прием</string>
+    <string name="myAppointments">Моя медецинская карта</string>
     <string name="makeAppointment">Записаться на прием</string>
     <string name="mySettings">Настройки</string>
 
-<!--    AdminPanel Labels-->
+    <!--    AdminPanel Labels-->
     <string name="hospitalLabel">Выберите учереждение</string>
-    <string name="postLabel">Выберите направление</string>
+    <string name="postLabel">Выберите специалиста</string>
     <string name="DayLabel">Укажите дни</string>
     <string name="TimeLabel">Укажите время</string>
     <!--    AdminPanel regEmployee_Layout_2 Buttons-->
@@ -55,28 +54,34 @@
     <!--    AdminPanel reg1 labels  -->
     <string name="APapp_name">ProMed</string>
     <string name="APsurnameLabel">Фамилия</string>
-    <string name="APsurnameLabelHint">Введите фамилию...</string>
+    <string name="APsurnameLabelHint">Фамилия</string>
     <string name="APnameLabel">Имя</string>
-    <string name="APnameLabelHint">Введите имя...</string>
+    <string name="APnameLabelHint">Имя</string>
     <string name="APthirdNameLabel">Отчество</string>
-    <string name="APthirdNameLabelHint">Введите отчество...</string>
+    <string name="APthirdNameLabelHint">Отчество</string>
     <string name="APphoneNumbe">Номер телефона</string>
-    <string name="APphoneNumberHint">Введите номер телефона...</string>
+    <string name="APphoneNumberHint">Телефон</string>
     <string name="APemailLabel">Почта</string>
-    <string name="APemailLabelHint">Введите почту...</string>
+    <string name="APemailLabelHint">Почту</string>
     <string name="APpasswordLabel">Пароль</string>
-    <string name="APpasswordLabelHint">Введите пароль...</string>
+    <string name="APpasswordLabelHint">Пароль</string>
     <string name="APpassword2Label">Повторите пароль</string>
-    <string name="APpassword2LabelHint">Повторите пароль...</string>
+    <string name="APpassword2LabelHint">Повторите пароль</string>
 
     <!--    DoctorsAppoitment Labels-->
     <string name="hospitalLabelDA">Выберите учереждение</string>
-    <string name="postLabelDA">Выберите направление</string>
+    <string name="postLabelDA">Выберите специалиста</string>
     <string name="DayLabelDA">Укажите день</string>
     <string name="TimeLabelDA">Укажите время</string>
     <string name="DoctorLabelDA">Выберите врача</string>
     <!--    AdminPanel regEmployee_Layout_2 Buttons-->
     <string name="nextBtnDA">Далее</string>
     <string name="cancelBtn_apDA">Назад</string>
+
+
+    <!-- AdminProfile -->
+    <string name="addDoctor">Добавить врача</string>
+    <string name="editDoctor">Редактировать профиль врача</string>
+    <string name="deleteDoctor">Удалить врача</string>
 
 </resources>

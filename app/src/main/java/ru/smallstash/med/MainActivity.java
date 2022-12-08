@@ -41,13 +41,10 @@ public class MainActivity extends AppCompatActivity{
 
     private EditText login;
     private EditText pass;
-    private Spinner adminPanelHospitalSpinner;
     private Spinner adminPanelPostlSpinner;
     private ArrayAdapter<CharSequence> adapter;
     private ArrayAdapter<CharSequence> adapter2;
 
-
-    private Spinner hospitalSpinner;
     private String hospital;
     private Spinner postSpinner;
     private String post;
@@ -141,13 +138,17 @@ public class MainActivity extends AppCompatActivity{
             if(userController.isAdmin(login.getText().toString())){
                 activeAdmin = (Admin) object;
                 System.out.println("admin");
-                setContentView(R.layout.reg_employee_layout_1);
+                setContentView(R.layout.activity_admin_profile);
                 return;
             }
             activePatient = (Patient) object;
             System.out.println("Patient");
             setContentView(R.layout.patientprofile);
         }
+    }
+
+    public void onClickAddEmployee(View view){
+        setContentView(R.layout.reg_employee_layout_1);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -159,27 +160,19 @@ public class MainActivity extends AppCompatActivity{
 
         setContentView(R.layout.reg_employee_layout_2);
 
-        adminPanelHospitalSpinner = (Spinner) findViewById(R.id.adminPanelHospitalSpinner);
-        adapter = ArrayAdapter.createFromResource(this,
-                R.array.hospitales, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         adminPanelPostlSpinner = (Spinner) findViewById(R.id.adminPanelPostlSpinner);
         adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.posts, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        adminPanelHospitalSpinner.setAdapter(adapter);
         adminPanelPostlSpinner.setAdapter(adapter2);
     }
 
     @SuppressLint("MissingInflatedId")
     public void onClickSubmit(View view){
-        hospitalSpinner = findViewById(R.id.adminPanelHospitalSpinner);
         postSpinner  = findViewById(R.id.adminPanelPostlSpinner);
         submitBtn = findViewById(R.id.submit);
 
-        hospital = hospitalSpinner.getSelectedItem().toString();
+        hospital = activeAdmin.getPrivateHospital();
         post = postSpinner.getSelectedItem().toString();
         System.out.println(hospital);
         System.out.println(post);
@@ -252,7 +245,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void onClickBackToRegEmployee_One(View view){
-        setContentView(R.layout.reg_employee_layout_1);
+        setContentView(R.layout.activity_admin_profile);
     }
     //DOCTORAPPOITMENT
 
@@ -363,6 +356,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.patientprofile);
     }
 
+    @SuppressLint("NewApi")
     public void obClickPatientOrders(View view){
         List<Order> list = activePatient.getOrders();
         list.forEach(System.out::println);

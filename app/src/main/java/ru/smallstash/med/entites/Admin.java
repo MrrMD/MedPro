@@ -9,4 +9,7 @@ public class Admin extends User{
         this.privateHospital = hospital;
     }
 
+    public String getPrivateHospital() {
+        return privateHospital;
+    }
 }
